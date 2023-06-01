@@ -6,8 +6,9 @@
 
 
 
-A browser extension that detects ads on video streams and blacks them out
+A browser extension that detects ads on video streams and blacks them out  
 
+[Available on Firefox Addons](https://addons.mozilla.org/fr/firefox/addon/ad-blacker/)
 ## Usage
 
 Start the dev environment: 
