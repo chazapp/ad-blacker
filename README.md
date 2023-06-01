@@ -1,4 +1,10 @@
-# ad-blacker
+<p align="center">
+  <img src="https://github.com/chazapp/ad-blacker/blob/master/icons/520.png?raw=true" alt="Ad-Blacker Logo"/>
+</p>  
+
+# Ad-blacker
+
+
 
 A browser extension that detects ads on video streams and blacks them out
 
