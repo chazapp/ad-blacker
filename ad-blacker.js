@@ -72,8 +72,11 @@ const adBlacker = (duration, videoPlayer) => {
 
 let blackerRunning = false;
 
+const twitchBlocker = async () => {
+
+}
+
 const eventLoop = async () => {
-  console.log("This eventLoop will test every 1s if a video player with an ad countdown exists")
   while (true) {
     // Detect a video player and adCountdown. 
     // If none, sleep for 1s
