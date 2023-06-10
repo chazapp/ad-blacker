@@ -25,7 +25,6 @@ A test suite based on WebDriverIO is available. It requires the following:
 
 - NodeJS
 - Gecko WebDriver + Firefox Developer Edition
-- An HTTP webserver
 
 Install the test suite, start GeckoWebdriver, then run the tests:
 
