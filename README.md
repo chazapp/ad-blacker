@@ -1,8 +1,11 @@
 <p align="center">
-  <img src="https://github.com/chazapp/ad-blacker/blob/master/icons/520.png?raw=true" alt="AdBlacker Logo"/>
+  <img src="https://github.com/chazapp/ad-blacker/blob/master/icons/260.png?raw=true" alt="AdBlacker Logo"/>
 </p>  
 
 # AdBlacker  
+
+[![Tests](https://github.com/chazapp/adblacker/actions/workflows/tests.yml/badge.svg)](https://github.com/chazapp/adblacker/actions/)
+[![tested with webdriverio](https://img.shields.io/badge/tested%20with-webdriver.io-%23ea5906)](https://webdriver.io/)
 
 A browser extension that detects ads on video streams and blacks them out  
 
