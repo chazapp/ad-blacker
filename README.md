@@ -24,12 +24,11 @@ A test suite based on WebDriverIO is available. It requires the following:
 - Gecko WebDriver + Firefox Developer Edition
 - An HTTP webserver
 
-Install the test suite, start an HTTP server in the tests/ directory, start GeckoWebdriver, then run the tests:
+Install the test suite, start GeckoWebdriver, then run the tests:
 
 ```
 $ yarn install
 ...
-$ cd tests && python -m http.server # in terminal #1
 $ geckodriver -p 4444 # in terminal #2
 $ yarn test # in terminal #3
 ```

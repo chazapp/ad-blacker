@@ -69,6 +69,12 @@ export const config = {
     services: [
         ['firefox-profile', {
             'xpinstall.signatures.required': false,
+        }],
+        ['static-server', {
+            port: 8000,
+            folders: [
+                { mount: "/", path: "./tests"}
+            ]
         }]
     ],
 
