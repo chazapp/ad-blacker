@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Ad-Blacker",
+    "name": "AdBlacker",
     "version": "1.0",
     "description": "Blacks-out ads on popular video streaming websites",
   
@@ -10,8 +10,8 @@
   
     "content_scripts": [
       {
-        "matches": ["https://www.twitch.tv/*"],
-        "js": ["ad-blacker.js"]
+        "matches": ["http://localhost/*"],
+        "js": ["adblacker.js"]
       }
     ]
 }

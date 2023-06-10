@@ -8,6 +8,7 @@
 //  - "Ad n°1 of 2 (0:10)"
 const displayedTimeToMilliseconds = (text) => {
   // Extract the time portion from the text
+  console.log("displayedTimeToMS: text: ", text);
   const timeRegex = /(\d{1,2}\s*:\s*\d{2})/; // Regex to match the time format (mm:ss) within parentheses
   const timeMatch = text.match(timeRegex);
   
@@ -20,7 +21,7 @@ const displayedTimeToMilliseconds = (text) => {
     
     return durationMilliseconds;
   }
-  
+  console.log("Can't find displayed time");
   // Return null if the time format is not found
   return null;
 }
@@ -28,7 +29,7 @@ const displayedTimeToMilliseconds = (text) => {
 //This function returns the black screen overlayed above the video player
 const blackScreen = () => {
   let blacker = document.createElement("div");
-  blacker.id = "Blacker Div"
+  blacker.id = "adblacker"
   blacker.style.backgroundColor = "black";
   blacker.style.position = "absolute"
   blacker.style.zIndex = 1;
@@ -72,10 +73,6 @@ const adBlacker = (duration, videoPlayer) => {
 
 let blackerRunning = false;
 
-const twitchBlocker = async () => {
-
-}
-
 const eventLoop = async () => {
   while (true) {
     // Detect a video player and adCountdown. 
@@ -83,9 +80,9 @@ const eventLoop = async () => {
     let adIndicator = document.querySelector('[data-a-target="video-ad-countdown"');
     let videoPlayer = document.querySelector('[data-a-target="video-player"]')
     if (adIndicator && adIndicator.innerText && videoPlayer && !blackerRunning) {
-      blackerRunning = true;
       let duration = displayedTimeToMilliseconds(adIndicator.innerText);
       if (duration != null) {
+        blackerRunning = true;
         adBlacker(duration, videoPlayer)
       }
     }
