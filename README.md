@@ -29,6 +29,6 @@ Install the test suite, start GeckoWebdriver, then run the tests:
 ```
 $ yarn install
 ...
-$ geckodriver -p 4444 # in terminal #2
-$ yarn test # in terminal #3
+$ geckodriver -p 4444 # in terminal #1
+$ yarn test # in terminal #2
 ```
