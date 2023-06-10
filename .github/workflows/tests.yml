@@ -4,8 +4,10 @@ jobs:
   adblacker:
     runs-on: ubuntu-latest
     services:
-      image: instrumentisto/geckodriver
-      ports: 4444:4444
+      geckodriver:
+        image: instrumentisto/geckodriver
+        ports: 
+          - 4444:4444
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
