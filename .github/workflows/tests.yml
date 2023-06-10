@@ -17,6 +17,8 @@ jobs:
         run: yarn install
       - name: Generate xpi
         run: npx web-ext build -a . -n adblacker.xpi
+      - name: Lint extension
+        run: npx web-ext lint
       - name: run geckodriver in background
         run: geckodriver -p 4444 &
       - run: yarn test
