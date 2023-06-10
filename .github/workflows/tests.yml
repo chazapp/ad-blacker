@@ -3,16 +3,22 @@ on: [push]
 jobs:
   adblacker:
     runs-on: ubuntu-latest
-    services:
-      geckodriver:
-        image: instrumentisto/geckodriver
-        ports: 
-          - 4444:4444
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 'v16.17.0'
-      - run: yarn install
+      - uses: browser-actions/setup-firefox@v1
+
+      - uses: browser-actions/setup-geckodriver
+        with:
+          token: $${{ secrets.GITHUB_TOKEN }}
+
+      - name: yarn install
+        run: yarn install
+
+      - name: run geckodriver in background
+        run: geckodriver -p 4444 &
+    
       - run: yarn test
