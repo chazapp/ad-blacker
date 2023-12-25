@@ -1,12 +1,8 @@
-
-  // <div data-a-target="video-ad-countdown" class="Layout-sc-1xcs6mc-0 gdoBNE"><span class="CoreText-sc-1txzju1-0 ffZeRf">0 : 29</span></div>
-
-
 // This function takes the duration of the ad taken from HTML and turns it into ms
 // Text variable examples:
 //  - "0:10"
 //  - "Ad n°1 of 2 (0:10)"
-const displayedTimeToMilliseconds = (text) => {
+const displayedTimeToMilliseconds = (text: string) => {
   // Extract the time portion from the text
   console.log("displayedTimeToMS: text: ", text);
   const timeRegex = /(\d{1,2}\s*:\s*\d{2})/; // Regex to match the time format (mm:ss) within parentheses
@@ -32,7 +28,7 @@ const blackScreen = () => {
   blacker.id = "adblacker"
   blacker.style.backgroundColor = "black";
   blacker.style.position = "absolute"
-  blacker.style.zIndex = 1;
+  blacker.style.zIndex = "1";
   blacker.style.width = "inherit";
   blacker.style.margin = "auto";
   blacker.style.height = "100%";
@@ -41,21 +37,21 @@ const blackScreen = () => {
   return blacker
 }
 
-const adBlacker = (duration, videoPlayer) => {
+const adBlacker = (duration: number, videoPlayer: Element) => {
   // Find a div that indicates an ad is being played and for how long
   console.log("---AdBlacker On---")
   // Create a black div element
   let blacker = blackScreen();
-  blacker.durationLeft = duration / 1000;
+  let durationLeft = duration / 1000;
   // Mute tab
   document.querySelectorAll('audio, video').forEach(item => {
-    item.muted = true;
+    (item as HTMLVideoElement).muted = true;
   });
   videoPlayer.insertAdjacentElement("afterbegin", blacker);
   // Display ad duration
   let durationIntervalId = setInterval(() => {
-    blacker.textContent = `${blacker.durationLeft}s`
-    blacker.durationLeft--;
+    blacker.textContent = `${durationLeft}s`
+    durationLeft--;
   }, 1000);
 
   console.log(`Removing Blacker screen in ${duration}s`)
@@ -63,7 +59,7 @@ const adBlacker = (duration, videoPlayer) => {
     console.log("Removing Blacker div");
     blacker.remove();
     document.querySelectorAll('audio, video').forEach(item => {
-      item.muted = false;
+      (item as HTMLVideoElement).muted = true;
     });
     blackerRunning = false;
     clearInterval(durationIntervalId);
@@ -71,16 +67,17 @@ const adBlacker = (duration, videoPlayer) => {
 
 };
 
-let blackerRunning = false;
+let blackerRunning: Boolean = false;
 
 const eventLoop = async () => {
   while (true) {
+    console.log("---AdBlacker -- Event Loop On---")
     // Detect a video player and adCountdown. 
     // If none, sleep for 1s
     let adIndicator = document.querySelector('[data-a-target="video-ad-countdown"');
     let videoPlayer = document.querySelector('[data-a-target="video-player"]')
-    if (adIndicator && adIndicator.innerText && videoPlayer && !blackerRunning) {
-      let duration = displayedTimeToMilliseconds(adIndicator.innerText);
+    if (adIndicator && (adIndicator as HTMLElement).innerText && videoPlayer && !blackerRunning) {
+      let duration = displayedTimeToMilliseconds((adIndicator as HTMLElement).innerText);
       if (duration != null) {
         blackerRunning = true;
         adBlacker(duration, videoPlayer)
@@ -90,4 +87,5 @@ const eventLoop = async () => {
   }
 };
 
-eventLoop();
+/*console.log("AdBlacker????")
+eventLoop();*/

@@ -58,7 +58,7 @@ export const config = {
         browserName: 'firefox',
         'moz:firefoxOptions': {
             args: [
-                "-headless"
+                //"-headless"
             ]
         }
     }],
