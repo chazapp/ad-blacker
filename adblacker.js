@@ -41,11 +41,23 @@ const blackScreen = () => {
   return blacker
 }
 
-const adBlacker = (duration, videoPlayer) => {
+const wikipediaIFrame = () => {
+  let iFrame = document.createElement("iframe");
+  iFrame.id = "adblacker";
+  iFrame.width = "inherit";
+  iFrame.style.position = "absolute"
+  iFrame.style.zIndex = "1";
+  iFrame.style.width = "inherit";
+  iFrame.style.margin = "auto";
+  iFrame.style.height = "100%";
+  iFrame.src = "https://en.wikipedia.org/wiki/Special:Random"
+  return iFrame
+}
+
+const adBlacker = (duration, videoPlayer, blacker) => {
   // Find a div that indicates an ad is being played and for how long
   console.log("---AdBlacker On---")
   // Create a black div element
-  let blacker = blackScreen();
   blacker.durationLeft = duration / 1000;
   // Mute tab
   document.querySelectorAll('audio, video').forEach(item => {
@@ -77,13 +89,16 @@ const eventLoop = async () => {
   while (true) {
     // Detect a video player and adCountdown. 
     // If none, sleep for 1s
+    console.log("AdBlacker !!");
     let adIndicator = document.querySelector('[data-a-target="video-ad-countdown"');
     let videoPlayer = document.querySelector('[data-a-target="video-player"]')
     if (adIndicator && adIndicator.innerText && videoPlayer && !blackerRunning) {
       let duration = displayedTimeToMilliseconds(adIndicator.innerText);
       if (duration != null) {
         blackerRunning = true;
-        adBlacker(duration, videoPlayer)
+        let blacker = blackScreen();
+        let wikiFrame = wikipediaIFrame();
+        adBlacker(duration, videoPlayer, wikiFrame)
       }
     }
     await new Promise(r => setTimeout(r, 1000));
